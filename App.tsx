@@ -28,36 +28,12 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import HeaderApp from './Header';
+
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
 
-// function Section({children, title}: SectionProps): JSX.Element {
-//   const isDarkMode = useColorScheme() === 'dark';
-//   return (
-//     <View style={styles.sectionContainer}>
-//       <Text>Helloo Tes aplikasi nih</Text>
-//       <Text
-//         style={[
-//           styles.sectionTitle,
-//           {
-//             color: isDarkMode ? Colors.white : Colors.black,
-//           },
-//         ]}>
-//         {title}
-//       </Text>
-//       <Text
-//         style={[
-//           styles.sectionDescription,
-//           {
-//             color: isDarkMode ? Colors.light : Colors.dark,
-//           },
-//         ]}>
-//         {children}
-//       </Text>
-//     </View>
-//   );
-// }
 
 const styles = StyleSheet.create({
   chatItem: {
@@ -66,7 +42,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flexDirection: 'row', 
-    alignItems: 'center', // Vertically center align items
+    alignItems: 'center', 
     padding: 16,
   },
   image: {
@@ -84,6 +60,7 @@ const styles = StyleSheet.create({
   message: {
     fontSize: 14,
     color: '#666',
+    width: 245
   },
   hovered: {
     backgroundColor: '#f0f0f0',
@@ -93,15 +70,22 @@ const styles = StyleSheet.create({
     color: '#666',
     alignSelf: 'flex-end',
     position: 'absolute',
-    top: 15,
+    // top: 10,
     right: 12,
+  },
+  textGroup: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 4, // Add some space between the text group and message
   },
 });
 
 const chats = [
-  { id: '1', name: 'John', message: 'Hello there!', time: '12:00' },
-  { id: '2', name: 'Alice', message: 'Hey, how are you?', time: '12:00' },
-  { id: '3', name: 'Bob', message: 'What\'s up?', time: '12:00' },
+  // { id: '1', name: 'Uzi', message: 'Hello there!', time: '12:00' },
+  { id: '1', name: 'Rhyuzi', message: 'Hey, how are you klasdklafsklnafslnkafslfnasklfasknfsaklafskfasknlfknla?', time: '12:00 AM' },
+  { id: '2', name: 'Azi', message: 'What\'s up?', time: '12:00 PM' },
+  { id: '3', name: 'Razi', message: 'What\'s up?', time: '12:00 AM' },
+  { id: '4', name: 'Sae', message: 'What\'s up?', time: '12:00 PM' },
 ];
 
 function App(): JSX.Element {
@@ -120,24 +104,29 @@ function App(): JSX.Element {
     onPressOut={handleMouseLeave}
     >
     <View style={[styles.chatItem, item.id === hoveredItemId && styles.hovered]}>
-    <View style={styles.contentContainer}>
-      <Image source={require('./assets/image/person.png')} style={styles.image} />
-      <View style={styles.textContainer}>
-        <Text style={styles.name}>{item.name}</Text>
-        <Text style={styles.message}>{item.message}</Text>
-        <Text style={styles.time}>{item.time}</Text>
+        <View style={styles.contentContainer}>
+          <Image source={require('./assets/image/person.png')} style={styles.image} />
+          <View style={styles.textContainer}>
+            <View style={styles.textGroup}>
+              <Text style={styles.name}>{item.name}</Text>
+              <Text style={styles.time}>{item.time}</Text>
+            </View>
+            <Text style={styles.message} numberOfLines={1} ellipsizeMode='tail'>{item.message}</Text>
+          </View>
+        </View>
       </View>
-    </View>
-  </View>
     </TouchableWithoutFeedback>
   );
 
   return (
-    <FlatList
+   <>
+      <HeaderApp />
+      <FlatList
       data={chats}
       renderItem={renderItem}
       keyExtractor={item => item.id}
     />
+   </>
   );
 
 }
