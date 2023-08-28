@@ -1,15 +1,19 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-const Header = () => {
+const MenuBar = () => {
   return (
     <View style={styles.header}>
-      <Image source={require('./assets/image/cavanero.jpg')} style={styles.logo} />
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>PETRA</Text>
+        <Text style={styles.title}>Beranda</Text>
       </View>
-      {/* <Image source={require('./assets/image/search-icon.png')} style={styles.searchIcon} /> */}
-      <Image source={require('./assets/image/search-icon.png')} style={styles.menuIcon} />
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>Percakapan</Text>
+      </View>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>Panggilan</Text>
+      </View>
+      
     </View>
   );
 };
@@ -29,8 +33,10 @@ const styles = StyleSheet.create({
     height: 30,
   },
   titleContainer: {
-    flex: 1,
-    marginLeft: 12,
+    // flex: 1,
+    // marginLeft: 10,
+    padding: 10,
+    alignItems: 'center',
   },
   title: {
     fontSize: 20,
@@ -47,4 +53,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Header;
+export default MenuBar;

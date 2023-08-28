@@ -29,6 +29,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import HeaderApp from './Header';
+import MenuBar from './MenuBar';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -121,6 +122,7 @@ function App(): JSX.Element {
   return (
    <>
       <HeaderApp />
+      <MenuBar />
       <FlatList
       data={chats}
       renderItem={renderItem}
